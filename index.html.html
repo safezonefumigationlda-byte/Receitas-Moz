@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qual é o Seu Perfil Culinário Africano? | Receitas de Moçambique</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f4d47a;
+            --gold-dark: #b89628;
+            --wine: #722f37;
+            --wine-dark: #4a1f24;
+            --wine-light: #9a3f4a;
+            --black: #0a0a0a;
+            --black-light: #1a1a1a;
+            --cream: #f5f0e6;
+            --green: #2d5016;
+            --green-light: #4ade80;
+            --gray: #2a2a2a;
+            --gray-light: #3a3a3a;
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f4d47a 50%, #d4af37 100%);
+            --gradient-gold-shine: linear-gradient(135deg, #f4d47a 0%, #d4af37 50%, #b89628 100%);
+            --gradient-green: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+            --glass-bg: rgba(26, 26, 26, 0.9);
+            --glass-border: rgba(212, 175, 55, 0.4);
+            --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.4);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.3; }
+
+        .background-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, #1a1210 0%, #0a0a0a 50%, #0a0a0a 100%);
+            overflow: hidden;
+        }
+        .background-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.6;
+        }
+        .floating-element {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.08;
+            animation: float 25s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 25%; right: 15%; animation-delay: 4s; font-size: 3rem; }
+        .floating-element:nth-child(3) { bottom: 35%; left: 20%; animation-delay: 8s; }
+        .floating-element:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 12s; font-size: 2.8rem; }
+        .floating-element:nth-child(5) { top: 55%; left: 5%; animation-delay: 16s; }
+        .floating-element:nth-child(6) { top: 75%; right: 25%; animation-delay: 20s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-30px) rotate(10deg) scale(1.1); }
+            50% { transform: translateY(-15px) rotate(-5deg) scale(0.95); }
+            75% { transform: translateY(-35px) rotate(8deg) scale(1.05); }
+        }
+        .sparkle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: sparkle 3s infinite;
+            box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold);
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .quiz-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 50px 40px;
+            box-shadow: var(--shadow-soft), var(--shadow-glow);
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--gradient-gold-shine);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes shimmer {
+            0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; }
+        }
+
+        .progress-container { margin-bottom: 35px; }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .progress-step {
+            background: rgba(212, 175, 55, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+        .progress-bar {
+            height: 10px;
+            background: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-gold-shine);
+            border-radius: 10px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .quiz-title {
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.4);
+            letter-spacing: -0.5px;
+        }
+        .quiz-title i {
+            margin-right: 12px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .quiz-subtitle {
+            font-size: 1.15rem;
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .question-title {
+            font-size: 1.7rem;
+            color: var(--cream);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .option-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid var(--gray-light);
+            border-radius: 20px;
+            padding: 24px 28px;
+            color: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 100%;
+            background: var(--gradient-gold);
+            transition: var(--transition);
+            z-index: -1;
+            opacity: 0.15;
+        }
+        .option-btn:hover {
+            border-color: var(--gold);
+            transform: translateX(12px);
+            background: rgba(212, 175, 55, 0.12);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        .option-btn:hover::before { width: 100%; }
+        .option-btn.selected {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        .option-icon {
+            font-size: 1.8rem;
+            width: 50px; height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--gradient-gold-shine);
+            color: var(--black);
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: var(--transition);
+        }
+        .option-btn:hover .option-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .cta-button {
+            background: var(--gradient-gold-shine);
+            color: var(--black);
+            border: none;
+            border-radius: 60px;
+            padding: 22px 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            margin-top: 35px;
+            text-decoration: none;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: var(--transition);
+        }
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.7);
+        }
+        .cta-button:hover::before { left: 100%; }
+        .cta-button:active { transform: translateY(-2px); }
+        .cta-button i {
+            transition: var(--transition);
+            font-size: 1.3rem;
+        }
+        .cta-button:hover i { transform: translateX(8px); }
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            box-shadow: none;
+        }
+        .cta-button.secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        .cta-button.green {
+            background: var(--gradient-green);
+            box-shadow: 0 15px 40px rgba(74, 222, 128, 0.4);
+        }
+        .cta-button.green:hover {
+            box-shadow: 0 20px 50px rgba(74, 222, 128, 0.6);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.12);
+            padding: 10px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .trust-badge:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+        .trust-badge i {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .urgency-alert {
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.3) 0%, rgba(74, 31, 36, 0.3) 100%);
+            border: 2px solid var(--wine);
+            border-radius: 16px;
+            padding: 18px 24px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.95rem;
+            box-shadow: 0 5px 20px rgba(114, 47, 55, 0.3);
+        }
+        .urgency-alert i {
+            color: #ff6b6b;
+            font-size: 1.4rem;
+            animation: pulse 1.5s infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-label i {
+            font-size: 1.1rem;
+        }
+        .form-input {
+            width: 100%;
+            padding: 18px 24px;
+            padding-left: 50px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid var(--gray-light);
+            border-radius: 16px;
+            color: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            transition: var(--transition);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        .form-input::placeholder {
+            color: rgba(245, 240, 230, 0.4);
+        }
+        .form-input-icon {
+            position: absolute;
+            left: 18px;
+            top: 42px;
+            color: var(--gold);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .form-input:focus + .form-input-icon,
+        .form-group:focus-within .form-input-icon {
+            color: var(--gold-light);
+            transform: scale(1.1);
+        }
+        .form-security {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--cream);
+            opacity: 0.75;
+            margin-top: 20px;
+            justify-content: center;
+            font-weight: 500;
+        }
+        .form-security i {
+            color: var(--gold);
+        }
+
+        .loading-container {
+            text-align: center;
+            padding: 50px 30px;
+        }
+        .spinner {
+            width: 70px; height: 70px;
+            border: 5px solid var(--gray);
+            border-top-color: var(--gold);
+            border-right-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .result-badge {
+            width: 140px; height: 140px;
+            margin: 0 auto 30px;
+            background: var(--gradient-gold-shine);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: var(--black);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.6), 0 0 100px rgba(212, 175, 55, 0.3);
+            animation: badgePulse 3s infinite, badgeRotate 10s linear infinite;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 60px rgba(212, 175, 55, 0.6), 0 0 100px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 80px rgba(212, 175, 55, 0.8), 0 0 120px rgba(212, 175, 55, 0.5); }
+        }
+        @keyframes badgeRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .result-title {
+            font-size: 2.3rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.4);
+        }
+        .result-description {
+            text-align: center;
+            font-size: 1.15rem;
+            margin-bottom: 35px;
+            line-height: 1.9;
+        }
+        .result-bullets {
+            list-style: none;
+            margin: 30px 0;
+        }
+        .result-bullets li {
+            padding: 16px 0;
+            padding-left: 45px;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.05rem;
+        }
+        .result-bullets li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .result-bullets li:last-child {
+            border-bottom: none;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 3px solid var(--gold);
+            border-radius: 24px;
+            padding: 35px;
+            margin: 35px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .price-original {
+            font-size: 1.3rem;
+            color: var(--cream);
+            opacity: 0.5;
+            text-decoration: line-through;
+            margin-bottom: 8px;
+        }
+        .price-current {
+            font-size: 3rem;
+            color: var(--gold);
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+        .price-save {
+            color: var(--green-light);
+            font-weight: 700;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .timer-container {
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.25) 0%, rgba(74, 31, 36, 0.25) 100%);
+            border: 2px solid var(--wine);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(114, 47, 55, 0.3);
+        }
+        .timer-label {
+            font-size: 1rem;
+            color: var(--cream);
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .timer-label i {
+            color: var(--wine-light);
+            animation: pulse 2s infinite;
+        }
+        .timer-display {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gold);
+            font-family: 'Montserrat', monospace;
+            letter-spacing: 5px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .purchase-counter {
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.25) 0%, rgba(22, 101, 52, 0.25) 100%);
+            border: 2px solid var(--green-light);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin: 25px 0;
+            box-shadow: 0 5px 20px rgba(74, 222, 128, 0.2);
+        }
+        .counter-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--green-light);
+            text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+            transition: var(--transition);
+        }
+        .counter-text {
+            font-size: 0.95rem;
+            color: var(--cream);
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+
+        .quiz-section {
+            display: none;
+        }
+        .quiz-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        .bounce-in {
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px; right: 20px;
+            padding: 20px 30px;
+            border-radius: 16px;
+            font-weight: 600;
+            z-index: 2000;
+            animation: slideInRight 0.5s ease-out;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+        }
+        .notification.success {
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+            color: white;
+            border: 2px solid #4ade80;
+        }
+        .notification.error {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            border: 2px solid #f87171;
+        }
+        .notification i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .cta-button.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .cta-button.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        .highlight-badge {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--black);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 12px; height: 12px;
+            background: var(--gold);
+            animation: confettiFall 3.5s linear forwards;
+            z-index: 1000;
+            border-radius: 2px;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .quiz-container { padding: 20px 15px; }
+            .card { padding: 35px 25px; border-radius: 24px; }
+            .quiz-title { font-size: 1.9rem; }
+            .question-title { font-size: 1.4rem; }
+            .option-btn { padding: 18px 20px; font-size: 1rem; }
+            .option-icon { width: 45px; height: 45px; font-size: 1.5rem; }
+            .cta-button { padding: 20px 35px; font-size: 1.05rem; }
+            .result-badge { width: 110px; height: 110px; font-size: 2.8rem; }
+            .result-title { font-size: 1.8rem; }
+            .price-current { font-size: 2.3rem; }
+            .timer-display { font-size: 2.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fundo Animado -->
+    <div class="background-container">
+        <div class="background-overlay"></div>
+        <i class="fas fa-pepper-hot floating-element"></i>
+        <i class="fas fa-leaf floating-element"></i>
+        <i class="fas fa-drumstick-bite floating-element"></i>
+        <i class="fas fa-utensils floating-element"></i>
+        <i class="fas fa-bowl-food floating-element"></i>
+        <i class="fas fa-wheat-awn floating-element"></i>
+        <i class="fas fa-carrot floating-element"></i>
+        <i class="fas fa-fire-burner floating-element"></i>
+        
+        <div class="sparkle" style="top: 15%; left: 25%; animation-delay: 0s;"></div>
+        <div class="sparkle" style="top: 35%; left: 60%; animation-delay: 1s;"></div>
+        <div class="sparkle" style="top: 65%; left: 35%; animation-delay: 2s;"></div>
+        <div class="sparkle" style="top: 80%; left: 75%; animation-delay: 0.5s;"></div>
+        <div class="sparkle" style="top: 45%; left: 85%; animation-delay: 1.5s;"></div>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="quiz-container">
+        
+        <!-- TELA DE ABERTURA -->
+        <div id="welcome-section" class="quiz-section active">
+            <div class="card">
+                <div style="text-align: center;">
+                    <span class="highlight-badge">
+                        <i class="fas fa-star"></i> Quiz Exclusivo
+                    </span>
+                </div>
+                
+                <h1 class="quiz-title">
+                    <i class="fas fa-map-location-dot"></i>
+                    Descubra Qual é o Seu Perfil Culinário Africano
+                </h1>
+                
+                <p class="quiz-subtitle">
+                    Responda 7 perguntas rápidas e receba uma recomendação personalizada de receitas moçambicanas ideais para o seu nível e gosto culinário.
+                </p>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <i class="fas fa-utensils" style="font-size: 5rem; color: var(--gold); opacity: 0.9; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));"></i>
+                </div>
+
+                <button class="cta-button" onclick="startQuiz()">
+                    <i class="fas fa-rocket"></i> COMEÇAR QUIZ AGORA
+                </button>
+
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <i class="fas fa-check-circle"></i>
+                        100% Gratuito
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-bolt"></i>
+                        Resultados Imediatos
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-users"></i>
+                        +5.000 Participantes
+                    </div>
+                </div>
+
+                <div class="urgency-alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span><strong>Atenção:</strong> Esta análise personalizada está disponível por tempo limitado.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERGUNTAS DO QUIZ -->
+        <div id="quiz-section" class="quiz-section">
+            <div class="card">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span class="progress-step" id="progress-text">Passo 1 de 7</span>
+                        <span id="progress-percent">14%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 14%;"></div>
+                    </div>
+                </div>
+
+                <h2 class="question-title" id="question-title"></h2>
+                
+                <div class="options-container" id="options-container"></div>
+            </div>
+        </div>
+
+        <!-- CAPTURA DE LEADS -->
+        <div id="lead-capture-section" class="quiz-section">
+            <div class="card">
+                <div style="text-align: center;">
+                    <i class="fas fa-gift" style="font-size: 4rem; color: var(--gold); margin-bottom: 25px; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));"></i>
+                    <h2 class="quiz-title">Seu Resultado Está Pronto! 🎁</h2>
+                    <p class="quiz-subtitle">
+                        Para receber sua análise personalizada e as recomendações de receitas, informe seus dados abaixo:
+                    </p>
+                </div>
+
+                <form id="lead-form" onsubmit="submitLead(event)">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-user"></i> Nome Completo
+                        </label>
+                        <i class="fas fa-user form-input-icon"></i>
+                        <input type="text" class="form-input" id="lead-name" placeholder="Seu nome completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <i class="fas fa-envelope form-input-icon"></i>
+                        <input type="email" class="form-input" id="lead-email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fab fa-whatsapp"></i> WhatsApp/Telefone (Opcional)
+                        </label>
+                        <i class="fab fa-whatsapp form-input-icon"></i>
+                        <input type="tel" class="form-input" id="lead-phone" placeholder="+258 84 XXX XXXX">
+                    </div>
+
+                    <button type="submit" class="cta-button" id="submit-btn">
+                        <i class="fas fa-lock"></i> VER MEU RESULTADO AGORA
+                    </button>
+
+                    <div class="form-security">
+                        <i class="fas fa-shield-alt"></i>
+                        Seus dados estão 100% seguros • Não enviamos spam
+                    </div>
+
+                    <div class="trust-badges" style="margin-top: 25px;">
+                        <div class="trust-badge">
+                            <i class="fas fa-envelope"></i>
+                            Análise enviada por email
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-star"></i>
+                            +5.000 participantes
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- LOADING DE RESULTADO -->
+        <div id="loading-section" class="quiz-section">
+            <div class="card">
+                <div class="loading-container">
+                    <div class="spinner"></div>
+                    <p class="loading-text">Analisando suas respostas...</p>
+                    <p style="color: var(--cream); opacity: 0.6; margin-top: 10px; font-size: 1rem;">
+                        <i class="fas fa-chart-pie"></i> Criando seu perfil personalizado
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTADO - CAMINHO A (PREMIUM) -->
+        <div id="result-a-section" class="quiz-section">
+            <div class="card">
+                <div class="result-badge bounce-in">
+                    <i class="fas fa-crown"></i>
+                </div>
+                
+                <h2 class="result-title">PERFIL GOURMET TRADICIONAL</h2>
+                
+                <p class="result-description">
+                    🎉 <strong>Parabéns!</strong> Seu perfil é <strong>PERFEITO</strong> para o eBook <strong>"RECEITAS DE MOÇAMBIQUE – Receitas da Terra Mãe"</strong>!
+                </p>
+
+                <div class="price-box">
+                    <p class="price-original">De 1.500 MZN</p>
+                    <p class="price-current">315 MZN</p>
+                    <p class="price-save"><i class="fas fa-piggy-bank"></i> Você economiza 79%!</p>
+                </div>
+
+                <div class="timer-container">
+                    <p class="timer-label"><i class="fas fa-clock"></i> Oferta especial expira em:</p>
+                    <div class="timer-display" id="timer-a">15:00</div>
+                </div>
+
+                <div class="purchase-counter">
+                    <div class="counter-number" id="purchase-count-a">47</div>
+                    <div class="counter-text">pessoas com seu perfil compraram hoje</div>
+                </div>
+
+                <a href="https://terra-mae-flavors.lovable.app" class="cta-button" style="text-decoration: none; display: inline-flex;">
+                    <i class="fas fa-shopping-cart"></i> VER MINHA OFERTA PERSONALIZADA
+                </a>
+            </div>
+        </div>
+
+        <!-- RESULTADO - CAMINHO B (DOWNSELL) -->
+        <div id="result-b-section" class="quiz-section">
+            <div class="card" style="border-color: rgba(74, 222, 128, 0.4);">
+                <div class="result-badge bounce-in" style="background: var(--gradient-green);">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                
+                <h2 class="result-title" style="color: var(--green-light);">PERFIL CULINÁRIO EM DESCOBERTA</h2>
+                
+                <p class="result-description">
+                    ✨ <strong>Interessante!</strong> Seu perfil mostra que você está começando uma jornada culinária emocionante.
+                </p>
+
+                <div style="background: linear-gradient(135deg, rgba(45, 80, 22, 0.3) 0%, rgba(22, 101, 52, 0.3) 100%); border: 3px solid var(--green-light); border-radius: 24px; padding: 30px; margin: 30px 0; text-align: center; box-shadow: 0 10px 40px rgba(74, 222, 128, 0.3);">
+                    <h3 style="color: var(--green-light); margin-bottom: 15px; font-size: 1.4rem;">
+                        <i class="fas fa-book"></i> GUIA RÁPIDO: 10 RECEITAS MOÇAMBICANAS EXPRESS
+                    </h3>
+                    <p class="price-original">De 500 MZN</p>
+                    <p class="price-current" style="color: var(--green-light);">150 MZN</p>
+                    <p class="price-save"><i class="fas fa-piggy-bank"></i> Você economiza 70%!</p>
+                </div>
+
+                <a href="https://terra-mae-flavors.lovable.app" class="cta-button green" style="text-decoration: none; display: inline-flex;">
+                    <i class="fas fa-bolt"></i> QUERO COMEÇAR COM O GUIA RÁPIDO
+                </a>
+
+                <a href="https://terra-mae-flavors.lovable.app" class="cta-button secondary" style="text-decoration: none; display: inline-flex; margin-top: 15px;">
+                    <i class="fas fa-book"></i> Ver o eBook Completo (315 MZN)
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ============================================
+        // CONFIGURAÇÃO DO EMAILJS
+        // ============================================
+        const EMAILJS_CONFIG = {
+            publicKey: 'JQ4aYCGsmpFxgRqPm',
+            serviceId: 'service_cafssjh',
+            templateId: 'template_ml487mt'
+        };
+
+        // Inicializar EmailJS
+        (function() {
+            emailjs.init(EMAILJS_CONFIG.publicKey);
+        })();
+
+        // ============================================
+        // DADOS DO QUIZ
+        // ============================================
+        const questions = [
+            {
+                title: "<i class='fas fa-fire-burner'></i> Qual é o seu nível de experiência na cozinha?",
+                options: [
+                    { text: "Iniciante (Estou começando agora)", icon: "🟢", score: 1 },
+                    { text: "Intermediário (Já cozinho algumas coisas)", icon: "🟡", score: 2 },
+                    { text: "Avançado (Cozinho com frequência e confiança)", icon: "🔴", score: 3 }
+                ]
+            },
+            {
+                title: "<i class='fas fa-flag'></i> Você tem alguma conexão com a cultura moçambicana ou africana?",
+                options: [
+                    { text: "Sim, sou moçambicano(a) ou tenho família em Moçambique", icon: "🟢", score: 3 },
+                    { text: "Tenho interesse e curiosidade pela cultura africana", icon: "🟡", score: 2 },
+                    { text: "Não tenho conexão, mas quero aprender", icon: "🔴", score: 1 }
+                ]
+            },
+            {
+                title: "<i class='fas fa-calendar-alt'></i> Com que frequência você cozinha em casa?",
+                options: [
+                    { text: "Todos os dias", icon: "🟢", score: 3 },
+                    { text: "3-4 vezes por semana", icon: "🟡", score: 2 },
+                    { text: "1-2 vezes por semana ou menos", icon: "🔴", score: 1 }
+                ]
+            },
+            {
+                title: "<i class='fas fa-bullseye'></i> Qual é o seu principal objetivo ao buscar novas receitas?",
+                options: [
+                    { text: "Recriar sabores da minha infância/tradição", icon: "🟢", score: 3 },
+                    { text: "Impressionar família e amigos com pratos especiais", icon: "🟡", score: 2 },
+                    { text: "Aprender a cozinhar de forma prática e rápida", icon: "🔴", score: 1 }
+                ]
+            },
+            {
+                title: "<i class='fas fa-pepper-hot'></i> Qual tipo de sabor mais te atrai?",
+                options: [
+                    { text: "Sabores fortes e temperados (piri-piri, caril, coco)", icon: "🟢", score: 3 },
+                    { text: "Sabores equilibrados e aromáticos", icon: "🟡", score: 2 },
+                    { text: "Sabores suaves e simples", icon: "🔴", score: 1 }
+                ]
+            },
+            {
+                title: "<i class='fas fa-hourglass-half'></i> Quanto tempo você pode dedicar para preparar uma refeição especial?",
+                options: [
+                    { text: "1 hora ou mais (gosto do processo)", icon: "🟢", score: 3 },
+                    { text: "30-60 minutos", icon: "🟡", score: 2 },
+                    { text: "Menos de 30 minutos (preciso de rapidez)", icon: "🔴", score: 1 }
+                ]
+            },
+            {
+                title: "<i class='fas fa-book'></i> Você já investiu em livros, cursos ou materiais de culinária antes?",
+                options: [
+                    { text: "Sim, e estou disposto(a) a investir em material de qualidade", icon: "🟢", score: 3 },
+                    { text: "Já comprei alguns, mas quero algo mais específico", icon: "🟡", score: 2 },
+                    { text: "Nunca investi, prefiro conteúdo gratuito", icon: "🔴", score: 1 }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let totalScore = 0;
+        let leadData = {};
+
+        function startQuiz() {
+            showSection('quiz-section');
+            loadQuestion();
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.quiz-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            
+            document.getElementById('question-title').innerHTML = question.title;
+            document.getElementById('progress-text').textContent = `Passo ${currentQuestion + 1} de ${questions.length}`;
+            document.getElementById('progress-percent').textContent = `${Math.round(progress)}%`;
+            document.getElementById('progress-fill').style.width = `${progress}%`;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option-btn fade-in';
+                button.style.animationDelay = `${index * 0.1}s`;
+                button.innerHTML = `
+                    <span class="option-icon">${option.icon}</span>
+                    <span>${option.text}</span>
+                `;
+                button.onclick = () => selectOption(option.score);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectOption(score) {
+            totalScore += score;
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                setTimeout(() => {
+                    loadQuestion();
+                }, 300);
+            } else {
+                setTimeout(() => {
+                    showSection('lead-capture-section');
+                }, 300);
+            }
+        }
+
+        async function submitLead(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            leadData = {
+                name: document.getElementById('lead-name').value,
+                email: document.getElementById('lead-email').value,
+                phone: document.getElementById('lead-phone').value,
+                score: totalScore,
+                timestamp: new Date().toISOString()
+            };
+
+            submitBtn.classList.add('loading');
+            submitBtn.innerHTML = '<i class="fas fa-spinner"></i> ENVIANDO...';
+
+            try {
+                const emailParams = {
+                    to_email: 'edilsonmauricio576@gmail.com',
+                    from_name: leadData.name,
+                    from_email: leadData.email,
+                    from_phone: leadData.phone || 'Não informado',
+                    quiz_score: totalScore,
+                    quiz_result: totalScore >= 15 ? 'PERFIL GOURMET TRADICIONAL' : 'PERFIL CULINÁRIO EM DESCOBERTA',
+                    timestamp: new Date().toLocaleString('pt-BR')
+                };
+
+                await emailjs.send(
+                    EMAILJS_CONFIG.serviceId,
+                    EMAILJS_CONFIG.templateId,
+                    emailParams
+                );
+
+                localStorage.setItem('quizLead', JSON.stringify(leadData));
+
+                showNotification('success', '✅ Dados enviados com sucesso! Seu resultado está sendo preparado...');
+
+                setTimeout(() => {
+                    showSection('loading-section');
+                    setTimeout(() => {
+                        showResult();
+                    }, 3000);
+                }, 1000);
+
+            } catch (error) {
+                console.error('Erro ao enviar email:', error);
+                
+                let errorMessage = '❌ Erro ao enviar. ';
+                if (error.status === 400) {
+                    errorMessage += 'Verifique as variáveis do template!';
+                } else if (error.status === 401) {
+                    errorMessage += 'Chave de API inválida!';
+                }
+                
+                showNotification('error', errorMessage);
+                
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = originalBtnText;
+            }
+        }
+
+        function showNotification(type, message) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                ${message}
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.5s ease-out reverse';
+                setTimeout(() => notification.remove(), 500);
+            }, 4000);
+        }
+
+        function showResult() {
+            if (totalScore >= 15) {
+                showSection('result-a-section');
+                startTimer('timer-a', 15 * 60);
+                createConfetti();
+            } else {
+                showSection('result-b-section');
+            }
+            incrementPurchaseCounter();
+        }
+
+        function startTimer(elementId, duration) {
+            let timer = duration;
+            const element = document.getElementById(elementId);
+            
+            const interval = setInterval(() => {
+                const minutes = Math.floor(timer / 60);
+                const seconds = timer % 60;
+                element.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timer <= 0) {
+                    clearInterval(interval);
+                    element.textContent = "00:00";
+                    element.style.color = '#ff6b6b';
+                }
+                timer--;
+            }, 1000);
+        }
+
+        function incrementPurchaseCounter() {
+            const counterElement = document.getElementById('purchase-count-a');
+            if (counterElement) {
+                let count = parseInt(counterElement.textContent);
+                setInterval(() => {
+                    if (Math.random() > 0.7) {
+                        count++;
+                        counterElement.textContent = count;
+                        counterElement.style.transform = 'scale(1.2)';
+                        setTimeout(() => {
+                            counterElement.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                }, 10000);
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#d4af37', '#f4d47a', '#722f37', '#4ade80', '#ffffff', '#ea580c'];
+            for (let i = 0; i < 80; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 40);
+            }
+        }
+
+        function createSparkles() {
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.left = Math.random() * 100 + '%';
+                document.querySelector('.background-container').appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 3000);
+            }, 2000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createSparkles();
+        });
+    </script>
+</body>
+</html>
